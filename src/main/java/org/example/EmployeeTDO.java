@@ -84,7 +84,8 @@ public class EmployeeTDO {
     }
 
     public LocalDate addDate(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/dd/yyyy");
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/dd/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
         return LocalDate.parse(date, formatter);
     }
 }

@@ -1,7 +1,11 @@
 package start;
 
+import org.example.EmployeeTDO;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class FileIOUtils {
     static void readFile(String fileName) {
@@ -14,7 +18,8 @@ public class FileIOUtils {
             String line = bufferedReader.readLine();
 
             while (line != null) {
-                System.out.println(line);
+                String[] employeeData = line.split(",");
+                EmployeeTDO employeeTDO = new EmployeeTDO(employeeData);
                 line = bufferedReader.readLine();
             }
 
