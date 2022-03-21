@@ -3,7 +3,7 @@ package org.example;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class EmployeeTDO {
+public class EmployeeDTO {
 
     private String EmpID;
     private String namePrefix;
@@ -17,7 +17,7 @@ public class EmployeeTDO {
     private float salary;
 
 
-    public EmployeeTDO(String empID, String namePrefix, String firstName, String middleInitial, String lastName, String gender, String email, LocalDate dob, LocalDate dateOfJoining, float salary) {
+    public EmployeeDTO(String empID, String namePrefix, String firstName, String middleInitial, String lastName, String gender, String email, LocalDate dob, LocalDate dateOfJoining, float salary) {
         this.EmpID = empID;
         this.namePrefix = namePrefix;
         this.firstName = firstName;
@@ -30,7 +30,7 @@ public class EmployeeTDO {
         this.salary = salary;
     }
 
-    public EmployeeTDO(String[] employee) {
+    public EmployeeDTO(String[] employee) {
         this.EmpID = employee[0];
         this.namePrefix = employee[1];
         this.firstName = employee[2];
@@ -84,7 +84,7 @@ public class EmployeeTDO {
     }
 
     public LocalDate addDate(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/dd/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
         return LocalDate.parse(date, formatter);
     }
 }
