@@ -1,6 +1,6 @@
 package start;
 
-import org.example.EmployeeTDO;
+import org.example.EmployeeDTO;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -19,7 +19,7 @@ public class FileIOUtils {
 
             while (line != null) {
                 String[] employeeData = line.split(",");
-                EmployeeTDO employeeTDO = new EmployeeTDO(employeeData);
+                EmployeeDTO employeeDTO = new EmployeeDTO(employeeData);
                 line = bufferedReader.readLine();
             }
 
