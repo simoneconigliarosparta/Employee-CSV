@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class EmployeeDTO {
 
-    private String EmpID;
+    private int empID;
     private String namePrefix;
     private String firstName;
     private String middleInitial;
@@ -17,8 +17,8 @@ public class EmployeeDTO {
     private float salary;
 
 
-    public EmployeeDTO(String empID, String namePrefix, String firstName, String middleInitial, String lastName, String gender, String email, LocalDate dob, LocalDate dateOfJoining, float salary) {
-        this.EmpID = empID;
+    public EmployeeDTO(int empID, String namePrefix, String firstName, String middleInitial, String lastName, String gender, String email, LocalDate dob, LocalDate dateOfJoining, float salary) {
+        this.empID = empID;
         this.namePrefix = namePrefix;
         this.firstName = firstName;
         this.middleInitial = middleInitial;
@@ -31,7 +31,7 @@ public class EmployeeDTO {
     }
 
     public EmployeeDTO(String[] employee) {
-        this.EmpID = employee[0];
+        this.empID = Integer.parseInt(employee[0]);
         this.namePrefix = employee[1];
         this.firstName = employee[2];
         this.middleInitial = employee[3];
@@ -43,8 +43,8 @@ public class EmployeeDTO {
         this.salary = Float.parseFloat(employee[9]);
     }
 
-    public String getEmpID() {
-        return EmpID;
+    public int getEmpID() {
+        return empID;
     }
 
     public String getNamePrefix() {

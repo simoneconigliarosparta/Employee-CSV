@@ -29,7 +29,7 @@ public class EmployeeManager {
 
     private static boolean isIdAlreadyExisting(EmployeeDTO employee) {
         for (EmployeeDTO element : employees) {
-            if (employee.getEmpID().equals(element.getEmpID())) {
+            if (employee.getEmpID() == element.getEmpID()) {
                 return true;
             }
         }
