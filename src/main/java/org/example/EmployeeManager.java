@@ -9,9 +9,6 @@ public class EmployeeManager {
 
     private static List<EmployeeDTO> corruptedData = new ArrayList<>();
 
-    public List<EmployeeDTO> getEmployees() {
-        return employees;
-    }
 
     public static void addEmployee(EmployeeDTO employee) {
 
