@@ -27,9 +27,10 @@ public class EmployeesDAO {
                 System.out.println(resultSet.getString(4));
                 System.out.println(resultSet.getString(5));
                 System.out.println(resultSet.getString(6));
-                System.out.println(resultSet.getDate(7));
+                System.out.println(resultSet.getString(7));
                 System.out.println(resultSet.getDate(8));
-                System.out.println(resultSet.getFloat(9));
+                System.out.println(resultSet.getDate(9));
+                System.out.println(resultSet.getFloat(10));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -46,15 +47,12 @@ public class EmployeesDAO {
             preparedStatement.setString(5, lastName);
             preparedStatement.setString(6, gender);
             preparedStatement.setString(7, email);
-            preparedStatement.setDate(7, Date.valueOf(dob));
-            preparedStatement.setDate(8, Date.valueOf(dateOfJoining));
-            preparedStatement.setFloat(9, salary);
-
+            preparedStatement.setDate(8, Date.valueOf(dob));
+            preparedStatement.setDate(9, Date.valueOf(dateOfJoining));
+            preparedStatement.setFloat(10, salary);
+            preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
-
-
 }
