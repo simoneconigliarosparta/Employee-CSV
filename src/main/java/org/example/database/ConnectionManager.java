@@ -1,12 +1,8 @@
 package org.example.database;
 
-import org.example.EmployeeDTO;
-import org.example.EmployeeManager;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class ConnectionManager {
 
@@ -32,16 +28,5 @@ public class ConnectionManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        Connection connection = ConnectionManager.getConnection();
-        EmployeesDAO employeesDAO = new EmployeesDAO(connection);
-        //LocalDate dob = LocalDate.of(1988,12,19);
-        //LocalDate dateOfJoining = LocalDate.of(2020,12,10);
-        //employeesDAO.insert(02,"Mr", "Simone", "none","Conigliaro", "M", "lalala@gmail.com", dob, dateOfJoining, 20000F);
-        //employeesDAO.printAllEmployees();
-        ConnectionManager.closeConnection();
-        
     }
 }

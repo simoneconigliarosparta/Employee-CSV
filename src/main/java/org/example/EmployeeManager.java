@@ -22,6 +22,14 @@ public class EmployeeManager {
         }
     }
 
+    public static List<EmployeeDTO> getEmployees() {
+        return employees;
+    }
+
+    public static List<EmployeeDTO> getCorruptedData() {
+        return corruptedData;
+    }
+
     private static boolean isDataCorrupted(EmployeeDTO employee) {
 
         if (isIdAlreadyExisting(employee)) {
@@ -39,7 +47,5 @@ public class EmployeeManager {
         }
         return false;
     }
-
-
 }
 

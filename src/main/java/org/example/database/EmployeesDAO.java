@@ -1,7 +1,8 @@
 package org.example.database;
 
+import org.example.EmployeeDTO;
+
 import java.sql.*;
-import java.time.LocalDate;
 
 public class EmployeesDAO {
 
@@ -21,35 +22,30 @@ public class EmployeesDAO {
         try {
             ResultSet resultSet = statement.executeQuery(SQLQueries.SELECT_ALL);
             while (resultSet.next()) {
-                System.out.println(resultSet.getInt(1));
-                System.out.println(resultSet.getString(2));
-                System.out.println(resultSet.getString(3));
-                System.out.println(resultSet.getString(4));
-                System.out.println(resultSet.getString(5));
-                System.out.println(resultSet.getString(6));
-                System.out.println(resultSet.getString(7));
-                System.out.println(resultSet.getDate(8));
-                System.out.println(resultSet.getDate(9));
-                System.out.println(resultSet.getFloat(10));
+                String result  = "";
+                for(int i = 1; i<=10; i++){
+                    result = result.concat(resultSet.getString(i) + " ");
+                }
+                System.out.println(result);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void insert(int empID, String namePrefix, String firstName, String middleInitial, String lastName, String gender, String email, LocalDate dob, LocalDate dateOfJoining, float salary){
+    public void insert(EmployeeDTO employee){
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.INSERT);
-            preparedStatement.setInt(1, empID);
-            preparedStatement.setString(2, namePrefix);
-            preparedStatement.setString(3, firstName);
-            preparedStatement.setString(4, middleInitial);
-            preparedStatement.setString(5, lastName);
-            preparedStatement.setString(6, gender);
-            preparedStatement.setString(7, email);
-            preparedStatement.setDate(8, Date.valueOf(dob));
-            preparedStatement.setDate(9, Date.valueOf(dateOfJoining));
-            preparedStatement.setFloat(10, salary);
+            preparedStatement.setInt(1, employee.getEmpID());
+            preparedStatement.setString(2, employee.getNamePrefix());
+            preparedStatement.setString(3, employee.getFirstName());
+            preparedStatement.setString(4, employee.getMiddleInitial());
+            preparedStatement.setString(5, employee.getLastName());
+            preparedStatement.setString(6, employee.getGender());
+            preparedStatement.setString(7, employee.getEmail());
+            preparedStatement.setDate(8, Date.valueOf(employee.getDob()));
+            preparedStatement.setDate(9, Date.valueOf(employee.getDateOfJoining()));
+            preparedStatement.setFloat(10, employee.getSalary());
             preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
