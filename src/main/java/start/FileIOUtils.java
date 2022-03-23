@@ -1,12 +1,13 @@
 package start;
 
 import org.example.EmployeeDTO;
+import org.example.EmployeeManager;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class FileIOUtils {
-    static void readFile(String fileName) {
+    public static void readFile(String fileName) {
         try {
             FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -18,9 +19,9 @@ public class FileIOUtils {
             while (line != null) {
                 String[] employeeData = line.split(",");
                 EmployeeDTO employeeDTO = new EmployeeDTO(employeeData);
+                EmployeeManager.addEmployee(employeeDTO);
                 line = bufferedReader.readLine();
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

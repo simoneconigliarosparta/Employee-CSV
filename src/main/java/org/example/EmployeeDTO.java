@@ -17,7 +17,7 @@ public class EmployeeDTO {
     private float salary;
 
 
-    public EmployeeDTO(int empID, String namePrefix, String firstName, String middleInitial, String lastName, String gender, String email, LocalDate dob, LocalDate dateOfJoining, float salary) {
+    public EmployeeDTO(int empID, String namePrefix, String firstName, String middleInitial, String lastName, String gender, String email, String dob, String dateOfJoining, float salary) {
         this.empID = empID;
         this.namePrefix = namePrefix;
         this.firstName = firstName;
@@ -25,8 +25,8 @@ public class EmployeeDTO {
         this.lastName = lastName;
         this.gender = gender;
         this.email = email;
-        this.dob = dob;
-        this.dateOfJoining = dateOfJoining;
+        this.dob = addDate(dob);
+        this.dateOfJoining = addDate(dateOfJoining);
         this.salary = salary;
     }
 
@@ -86,5 +86,21 @@ public class EmployeeDTO {
     public LocalDate addDate(String date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
         return LocalDate.parse(date, formatter);
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeDTO{" +
+                "empID=" + empID +
+                ", namePrefix='" + namePrefix + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", middleInitial='" + middleInitial + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", email='" + email + '\'' +
+                ", dob=" + dob +
+                ", dateOfJoining=" + dateOfJoining +
+                ", salary=" + salary +
+                '}';
     }
 }
