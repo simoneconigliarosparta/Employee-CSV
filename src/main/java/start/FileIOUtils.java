@@ -15,9 +15,7 @@ public class FileIOUtils {
             bufferedReader.readLine();
 
             String line = bufferedReader.readLine();
-
-            long start = System.nanoTime();
-
+            
             while (line != null) {
                 String[] employeeData = line.split(",");
                 EmployeeDTO employeeDTO = new EmployeeDTO(employeeData);
