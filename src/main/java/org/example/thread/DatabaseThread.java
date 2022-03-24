@@ -1,6 +1,6 @@
-package start;
+package org.example.thread;
 
-import org.example.EmployeeDTO;
+import org.example.employee.EmployeeDTO;
 import org.example.database.EmployeesDAO;
 
 import java.util.List;

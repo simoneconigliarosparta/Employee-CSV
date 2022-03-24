@@ -2,8 +2,10 @@ package org.example;
 
 import org.example.database.ConnectionManager;
 import org.example.database.EmployeesDAO;
+import org.example.employee.EmployeeDTO;
+import org.example.employee.EmployeeManager;
 import org.junit.jupiter.api.*;
-import start.FileIOUtils;
+import org.example.fileIO.FileIOUtils;
 
 import java.sql.Connection;
 

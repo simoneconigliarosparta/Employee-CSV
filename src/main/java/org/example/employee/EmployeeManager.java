@@ -1,8 +1,9 @@
-package org.example;
+package org.example.employee;
+
+import org.example.employee.EmployeeDTO;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class EmployeeManager {
 

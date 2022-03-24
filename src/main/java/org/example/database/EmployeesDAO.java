@@ -1,6 +1,6 @@
 package org.example.database;
 
-import org.example.EmployeeDTO;
+import org.example.employee.EmployeeDTO;
 
 import java.sql.*;
 
