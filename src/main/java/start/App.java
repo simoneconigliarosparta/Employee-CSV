@@ -6,36 +6,44 @@ import org.example.database.ConnectionManager;
 import org.example.database.EmployeesDAO;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 public class App {
     public static void main(String[] args) {
         Loader.start();
 
-
-        Connection connection = ConnectionManager.getConnection();
-        EmployeesDAO employeesDAO = new EmployeesDAO(connection);
-
+        List<Connection> connections = new ArrayList<>();
+        List<EmployeesDAO> employeesDAOS = new ArrayList<>();
         List<EmployeeDTO> employees = EmployeeManager.getEmployees();
+        List<DatabaseThread> threads = new ArrayList<>();
 
+        int numOfThread = 1;
+        
+        for (int i = 0; i < numOfThread; i ++) {
+            connections.add(ConnectionManager.getConnection());
+            employeesDAOS.add(new EmployeesDAO(connections.get(i)));
+            List<EmployeeDTO> list = employees.subList(i * employees.size() / numOfThread, (1 + i) * employees.size() / numOfThread);
+            threads.add(new DatabaseThread(list, employeesDAOS.get(i)));
+        }
 
-        // divide list into sublists
-        List<EmployeeDTO> list1 = employees.subList(0, 10000);
-        List<EmployeeDTO> list2 = employees.subList(10001, 20000);
-        List<EmployeeDTO> list3 = employees.subList(20001, 30000);
-        List<EmployeeDTO> list4 = employees.subList(30001, 40000);
-        List<EmployeeDTO> list5 = employees.subList(40001, 50000);
-        List<EmployeeDTO> list6 = employees.subList(50001, employees.size() - 1);
+        long start = System.nanoTime();
 
+        for (DatabaseThread t: threads){
+            t.start();
+        }
 
-        DatabaseThread thread1 = new DatabaseThread(list1, employeesDAO);
-        DatabaseThread thread2 = new DatabaseThread(list2, employeesDAO);
-        DatabaseThread thread3 = new DatabaseThread(list3, employeesDAO);
+        for (DatabaseThread t: threads){
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
-        thread1.start();
-        thread2.start();
-        thread3.start();
-
+        long end = System.nanoTime();
+        long time = (end - start) / 1000000000;
+        System.out.println("Time taken: " + time + " seconds");
 
     }
 }
