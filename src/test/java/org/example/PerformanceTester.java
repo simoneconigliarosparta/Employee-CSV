@@ -13,7 +13,7 @@ public class PerformanceTester {
 
     @BeforeAll
     public static void loadData(){
-        FileIOUtils.readFile("src/main/resources/EmployeeRecords.csv");
+        FileIOUtils.readFile("src/main/resources/EmployeeRecordsLarge.csv");
         connection = ConnectionManager.getConnection();
     }
     

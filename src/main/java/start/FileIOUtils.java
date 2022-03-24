@@ -22,6 +22,7 @@ public class FileIOUtils {
                 EmployeeManager.addEmployee(employeeDTO);
                 line = bufferedReader.readLine();
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
