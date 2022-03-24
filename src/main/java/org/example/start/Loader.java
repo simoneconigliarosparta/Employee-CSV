@@ -16,7 +16,7 @@ public class Loader {
     public static void start() {
         FileIOUtils.readFile("src/main/resources/EmployeeRecordsLarge.csv");
 
-        setThread(95);
+        setThread(1);
     }
 
     public static void setThread(int numOfThread) {
