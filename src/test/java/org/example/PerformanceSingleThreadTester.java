@@ -4,18 +4,23 @@ import org.example.database.ConnectionManager;
 import org.example.database.EmployeesDAO;
 import org.example.employee.EmployeeDTO;
 import org.example.employee.EmployeeFilter;
+import org.example.file_utils.FilePath;
 import org.junit.jupiter.api.*;
 import org.example.file_utils.FileReader;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
-public class PerformanceTester {
+public class PerformanceSingleThreadTester {
 
     private static Connection connection;
+    private static List<EmployeeDTO> filteredList = new ArrayList<>();
 
     @BeforeAll
     public static void loadData(){
-        FileReader.readFile("src/main/resources/EmployeeRecordsLarge.csv");
+        List<EmployeeDTO> fullList = FileReader.readFile(FilePath.EMPLOYEE_RECORD);
+        filteredList = EmployeeFilter.removeDuplicates(fullList);
         connection = ConnectionManager.getConnection();
     }
     
@@ -26,7 +31,7 @@ public class PerformanceTester {
         EmployeesDAO employeesDAO = new EmployeesDAO(connection);
 
         long start = System.nanoTime();
-        for(EmployeeDTO employee : EmployeeFilter.getEmployees()){
+        for(EmployeeDTO employee : filteredList){
             employeesDAO.insert(employee);
         }
         long end = System.nanoTime();
@@ -38,7 +43,5 @@ public class PerformanceTester {
     public static void closeConnection(){
         ConnectionManager.closeConnection();
     }
-
-    
     
 }

@@ -17,8 +17,8 @@ public class EmployeeFilter {
 
         employees = new ArrayList<>(listEmployees);
 
-        for (int i = 0; i < employees.size(); i++) {
-            for (int j = i + 1; j < employees.size(); j++) {
+        for (int i = 0; i < listEmployees.size(); i++) {
+            for (int j = i + 1; j < listEmployees.size(); j++) {
                 if (listEmployees.get(i).getEmpID() == listEmployees.get(j).getEmpID()) {
                     duplicates.add(listEmployees.get(i));
                     employees.remove(listEmployees.get(i));

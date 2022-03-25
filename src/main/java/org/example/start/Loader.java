@@ -10,8 +10,6 @@ import org.example.file_utils.FilePath;
 import org.example.thread.DatabaseThread;
 import org.example.thread.ThreadManager;
 
-import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Loader {
@@ -22,8 +20,5 @@ public class Loader {
         List<DatabaseThread> runningThreads = ThreadManager.setThread(100, filteredList);
         DisplayManager.printResult(runningThreads);
     }
-
-
-
 }
 

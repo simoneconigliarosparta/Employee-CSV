@@ -26,7 +26,6 @@ public class EmployeeFilterTester {
     @DisplayName("Should return filtered list of employees")
     void shouldReturnFilteredListOfEmployees() {
         List<EmployeeDTO> filteredList = EmployeeFilter.removeDuplicates(listEmployees);
-        System.out.println(filteredList.size());
         Assertions.assertTrue(listEmployees.size() > filteredList.size() && filteredList.size() > 0);
     }
 
