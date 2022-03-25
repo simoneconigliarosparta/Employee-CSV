@@ -1,6 +1,7 @@
 package org.example.thread;
 
 import org.example.database.ConnectionManager;
+import org.example.database.DatabaseConnection;
 import org.example.database.EmployeesDAO;
 import org.example.employee.EmployeeDTO;
 
@@ -11,6 +12,14 @@ import java.util.List;
 public class ThreadManager {
 
     public static List<DatabaseThread> setThread(int numThreads, List<EmployeeDTO> employees) {
+        final int EXTRA_CONNECTION = 10;
+
+        DatabaseConnection databaseConnection = new DatabaseConnection(ConnectionManager.getConnection());
+
+        if (numThreads + EXTRA_CONNECTION > databaseConnection.getMaxConnection()) {
+            databaseConnection.setMaxConnection(numThreads + EXTRA_CONNECTION);
+        }
+
         List<Connection> connections = new ArrayList<>();
         List<EmployeesDAO> employeesDAOS = new ArrayList<>();
         List<DatabaseThread> threads = new ArrayList<>();

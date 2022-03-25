@@ -21,4 +21,3 @@ public class Loader {
         DisplayManager.printResult(runningThreads);
     }
 }
-
