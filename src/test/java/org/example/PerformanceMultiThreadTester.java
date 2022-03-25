@@ -34,15 +34,15 @@ public class PerformanceMultiThreadTester {
 
         final int NUM_THREADS = 150;
 
-        List<DatabaseThread> listThreadsToRun = ThreadManager.setThread(NUM_THREADS, filteredList);
+        List<DatabaseThread> threadToRun = ThreadManager.setThread(NUM_THREADS, filteredList);
 
         long start = System.nanoTime();
 
-        for (DatabaseThread t: listThreadsToRun){
+        for (DatabaseThread t: threadToRun){
             t.start();
         }
 
-        for (DatabaseThread t: listThreadsToRun){
+        for (DatabaseThread t: threadToRun){
             try {
                 t.join();
             } catch (InterruptedException e) {
