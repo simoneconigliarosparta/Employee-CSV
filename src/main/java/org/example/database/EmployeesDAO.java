@@ -9,10 +9,13 @@ public class EmployeesDAO {
     private Connection connection;
     private Statement statement;
 
+    private PreparedStatement batchInsertStatement;
+
     public EmployeesDAO(Connection connection) {
         this.connection = connection;
         try {
             statement = connection.createStatement();
+            batchInsertStatement = connection.prepareStatement(SQLQueries.INSERT);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -47,6 +50,32 @@ public class EmployeesDAO {
             preparedStatement.setDate(9, Date.valueOf(employee.getDateOfJoining()));
             preparedStatement.setFloat(10, employee.getSalary());
             preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void batchInsert(EmployeeDTO employee){
+        try {
+            batchInsertStatement.setInt(1, employee.getEmpID());
+            batchInsertStatement.setString(2, employee.getNamePrefix());
+            batchInsertStatement.setString(3, employee.getFirstName());
+            batchInsertStatement.setString(4, employee.getMiddleInitial());
+            batchInsertStatement.setString(5, employee.getLastName());
+            batchInsertStatement.setString(6, employee.getGender());
+            batchInsertStatement.setString(7, employee.getEmail());
+            batchInsertStatement.setDate(8, Date.valueOf(employee.getDob()));
+            batchInsertStatement.setDate(9, Date.valueOf(employee.getDateOfJoining()));
+            batchInsertStatement.setFloat(10, employee.getSalary());
+            batchInsertStatement.addBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void executeBatchInsert(){
+        try {
+            batchInsertStatement.executeBatch();
         } catch (SQLException e) {
             e.printStackTrace();
         }

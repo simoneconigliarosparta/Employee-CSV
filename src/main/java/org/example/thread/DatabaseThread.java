@@ -17,9 +17,9 @@ public class DatabaseThread extends Thread {
 
     public void insertDataIntoDb() {
         for (EmployeeDTO employee : employees) {
-            employeesDAO.insert(employee);
-
+            employeesDAO.batchInsert(employee);
         }
+        employeesDAO.executeBatchInsert();
     }
 
     @Override
