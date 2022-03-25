@@ -1,7 +1,5 @@
 package org.example.employee;
 
-import org.example.file_utils.FilePath;
-import org.example.file_utils.FileReader;
 import org.example.logger.EmployeeLogger;
 
 import java.util.ArrayList;
@@ -31,6 +29,7 @@ public class EmployeeFilter {
             }
         }
         logger.getLogger().log(Level.INFO, "Returning filtered list of " + employees.size() + " employees");
+        logger.closeHandler();
         return employees;
     }
 

@@ -16,7 +16,7 @@ public class ThreadManager {
     public static List<DatabaseThread> setThread(int numThreads, List<EmployeeDTO> employees) {
         EmployeeLogger logger = new EmployeeLogger();
         logger.setupLogger();
-        logger.getLogger().log(Level.INFO,"Setting up threads...");
+        logger.getLogger().log(Level.INFO, "Setting up threads...");
 
         final int EXTRA_CONNECTION = 10;
 
@@ -30,13 +30,16 @@ public class ThreadManager {
         List<EmployeesDAO> employeesDAOS = new ArrayList<>();
         List<DatabaseThread> threads = new ArrayList<>();
 
-        for (int i = 0; i < numThreads; i ++) {
+        logger.getLogger().log(Level.INFO, "Creating connection and sub list of employees for each thread");
+
+        for (int i = 0; i < numThreads; i++) {
             connections.add(ConnectionManager.getConnection());
             employeesDAOS.add(new EmployeesDAO(connections.get(i)));
             List<EmployeeDTO> list = employees.subList(i * employees.size() / numThreads, (1 + i) * employees.size() / numThreads);
             threads.add(new DatabaseThread(list, employeesDAOS.get(i), connections.get(i)));
         }
-        logger.getLogger().log(Level.INFO, "Returning list of threads ready to be run");
+        logger.getLogger().log(Level.INFO, "Returning list of " + numThreads + " threads ready to be run");
+        logger.closeHandler();
         return threads;
     }
 

@@ -36,6 +36,7 @@ public class FileReader {
             logger.getLogger().log(Level.WARNING, e.getMessage());
         }
         logger.getLogger().log(Level.INFO, "Returning list of " + employees.size() + " employees");
+        logger.closeHandler();
         return employees;
     }
 }
