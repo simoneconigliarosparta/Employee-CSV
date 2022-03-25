@@ -11,6 +11,15 @@ import java.util.List;
 
 public class FileReaderTester {
 
+    @Test
+    void checkFileExist() {
+        Assertions.assertTrue(FileReader.readFile(FilePath.EMPLOYEE_RECORD) != null);
+    }
+
+    @Test
+    void checkLargeFileExist() {
+        Assertions.assertTrue(FileReader.readFile(FilePath.EMPLOYEE_RECORD_LARGE) != null);
+    }
 
     @Test
     @DisplayName("Should return list of employees")
