@@ -3,9 +3,9 @@ package org.example;
 import org.example.database.ConnectionManager;
 import org.example.database.EmployeesDAO;
 import org.example.employee.EmployeeDTO;
-import org.example.employee.EmployeeManager;
+import org.example.employee.EmployeeFilter;
 import org.junit.jupiter.api.*;
-import org.example.fileIO.FileIOUtils;
+import org.example.file_utils.FileReader;
 
 import java.sql.Connection;
 
@@ -15,7 +15,7 @@ public class PerformanceTester {
 
     @BeforeAll
     public static void loadData(){
-        FileIOUtils.readFile("src/main/resources/EmployeeRecordsLarge.csv");
+        FileReader.readFile("src/main/resources/EmployeeRecordsLarge.csv");
         connection = ConnectionManager.getConnection();
     }
     
@@ -26,7 +26,7 @@ public class PerformanceTester {
         EmployeesDAO employeesDAO = new EmployeesDAO(connection);
 
         long start = System.nanoTime();
-        for(EmployeeDTO employee : EmployeeManager.getEmployees()){
+        for(EmployeeDTO employee : EmployeeFilter.getEmployees()){
             employeesDAO.insert(employee);
         }
         long end = System.nanoTime();
