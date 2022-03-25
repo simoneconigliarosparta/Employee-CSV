@@ -1,7 +1,7 @@
-package start;
+package org.example.fileIO;
 
-import org.example.EmployeeDTO;
-import org.example.EmployeeManager;
+import org.example.employee.EmployeeDTO;
+import org.example.employee.EmployeeManager;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

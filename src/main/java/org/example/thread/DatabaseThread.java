@@ -1,6 +1,6 @@
-package start;
+package org.example.thread;
 
-import org.example.EmployeeDTO;
+import org.example.employee.EmployeeDTO;
 import org.example.database.EmployeesDAO;
 
 import java.util.List;
@@ -17,9 +17,9 @@ public class DatabaseThread extends Thread {
 
     public void insertDataIntoDb() {
         for (EmployeeDTO employee : employees) {
-            employeesDAO.insert(employee);
-
+            employeesDAO.batchInsert(employee);
         }
+        employeesDAO.executeBatchInsert();
     }
 
     @Override
