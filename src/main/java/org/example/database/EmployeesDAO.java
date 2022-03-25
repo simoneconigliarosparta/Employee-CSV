@@ -8,7 +8,6 @@ public class EmployeesDAO {
 
     private Connection connection;
     private Statement statement;
-
     private PreparedStatement batchInsertStatement;
 
     public EmployeesDAO(Connection connection) {

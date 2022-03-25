@@ -16,7 +16,6 @@ public class DatabaseThread extends Thread {
         this.employees = employees;
         this.employeesDAO = employeesDAO;
         this.connection = connection;
-
     }
 
     public void insertDataIntoDb() {
