@@ -2,7 +2,6 @@ package org.example.display;
 
 import org.example.thread.DatabaseThread;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class DisplayManager {
