@@ -1,5 +1,6 @@
 package org.example.start;
 
+import org.example.database.DatabaseConnection;
 import org.example.display.DisplayManager;
 import org.example.employee.EmployeeDTO;
 import org.example.employee.EmployeeManager;
@@ -16,10 +17,18 @@ public class Loader {
     public static void start() {
         FileIOUtils.readFile("src/main/resources/EmployeeRecordsLarge.csv");
 
-        setThread(100);
+        setThread(200);
     }
 
     public static void setThread(int numOfThread) {
+        final int EXTRA_CONNECTION = 10;
+
+        DatabaseConnection databaseConnection = new DatabaseConnection(ConnectionManager.getConnection());
+
+        if (numOfThread + EXTRA_CONNECTION > databaseConnection.getMaxConnection()) {
+            databaseConnection.setMaxConnection(numOfThread + EXTRA_CONNECTION);
+        }
+
         List<Connection> connections = new ArrayList<>();
         List<EmployeesDAO> employeesDAOS = new ArrayList<>();
         List<EmployeeDTO> employees = EmployeeManager.getEmployees();
