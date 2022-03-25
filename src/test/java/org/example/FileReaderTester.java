@@ -12,12 +12,14 @@ import java.util.List;
 public class FileReaderTester {
 
     @Test
-    void checkFileExist() {
+    @DisplayName("Check file exists")
+    void checkFileExists() {
         Assertions.assertTrue(FileReader.readFile(FilePath.EMPLOYEE_RECORD) != null);
     }
 
     @Test
-    void checkLargeFileExist() {
+    @DisplayName("Check large file exists")
+    void checkLargeFileExists() {
         Assertions.assertTrue(FileReader.readFile(FilePath.EMPLOYEE_RECORD_LARGE) != null);
     }
 

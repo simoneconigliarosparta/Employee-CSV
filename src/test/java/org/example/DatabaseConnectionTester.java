@@ -14,6 +14,7 @@ import java.sql.SQLException;
 public class DatabaseConnectionTester {
 
     @Test
+    @DisplayName("Test connection")
     void testConnection() {
         String url = PropertiesLoader.getProperties().getProperty("url");
         String username = PropertiesLoader.getProperties().getProperty("username");
@@ -25,9 +26,7 @@ public class DatabaseConnectionTester {
         } catch (SQLException e) {
 
         }
-
         Assertions.assertTrue(connection != null);
-
     }
 
     @Test
