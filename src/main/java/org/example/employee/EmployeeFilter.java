@@ -2,9 +2,11 @@ package org.example.employee;
 
 import org.example.file_utils.FilePath;
 import org.example.file_utils.FileReader;
+import org.example.logger.EmployeeLogger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 public class EmployeeFilter {
 
@@ -14,6 +16,9 @@ public class EmployeeFilter {
 
 
     public static List<EmployeeDTO> removeDuplicates(List<EmployeeDTO> listEmployees) {
+        EmployeeLogger logger = new EmployeeLogger();
+        logger.setupLogger();
+        logger.getLogger().log(Level.INFO, "Removing duplicates from list employees...");
 
         employees = new ArrayList<>(listEmployees);
 
@@ -25,6 +30,7 @@ public class EmployeeFilter {
                 }
             }
         }
+        logger.getLogger().log(Level.INFO, "Returning filtered list of " + employees.size() + " employees");
         return employees;
     }
 

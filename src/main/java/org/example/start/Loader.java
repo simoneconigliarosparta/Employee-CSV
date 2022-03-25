@@ -3,8 +3,6 @@ package org.example.start;
 import org.example.display.DisplayManager;
 import org.example.employee.EmployeeDTO;
 import org.example.employee.EmployeeFilter;
-import org.example.database.ConnectionManager;
-import org.example.database.EmployeesDAO;
 import org.example.file_utils.FileReader;
 import org.example.file_utils.FilePath;
 import org.example.thread.DatabaseThread;

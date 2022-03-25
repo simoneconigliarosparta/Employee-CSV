@@ -4,14 +4,20 @@ import org.example.database.ConnectionManager;
 import org.example.database.DatabaseConnection;
 import org.example.database.EmployeesDAO;
 import org.example.employee.EmployeeDTO;
+import org.example.logger.EmployeeLogger;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 public class ThreadManager {
 
     public static List<DatabaseThread> setThread(int numThreads, List<EmployeeDTO> employees) {
+        EmployeeLogger logger = new EmployeeLogger();
+        logger.setupLogger();
+        logger.getLogger().log(Level.INFO,"Setting up threads...");
+
         final int EXTRA_CONNECTION = 10;
 
         DatabaseConnection databaseConnection = new DatabaseConnection(ConnectionManager.getConnection());
@@ -30,6 +36,7 @@ public class ThreadManager {
             List<EmployeeDTO> list = employees.subList(i * employees.size() / numThreads, (1 + i) * employees.size() / numThreads);
             threads.add(new DatabaseThread(list, employeesDAOS.get(i), connections.get(i)));
         }
+        logger.getLogger().log(Level.INFO, "Returning list of threads ready to be run");
         return threads;
     }
 
