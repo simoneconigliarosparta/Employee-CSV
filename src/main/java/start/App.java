@@ -6,6 +6,7 @@ import org.example.database.ConnectionManager;
 import org.example.database.EmployeesDAO;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +19,9 @@ public class App {
         List<EmployeeDTO> employees = EmployeeManager.getEmployees();
         List<DatabaseThread> threads = new ArrayList<>();
 
-        int numOfThread = 1;
-        
+
+        int numOfThread = 100;
+
         for (int i = 0; i < numOfThread; i ++) {
             connections.add(ConnectionManager.getConnection());
             employeesDAOS.add(new EmployeesDAO(connections.get(i)));
@@ -28,7 +30,7 @@ public class App {
         }
 
         long start = System.nanoTime();
-
+        System.out.println("starting inserting data...");
         for (DatabaseThread t: threads){
             t.start();
         }
