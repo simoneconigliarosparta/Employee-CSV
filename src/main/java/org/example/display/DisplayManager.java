@@ -2,6 +2,7 @@ package org.example.display;
 
 import org.example.thread.DatabaseThread;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class DisplayManager {
@@ -16,6 +17,12 @@ public class DisplayManager {
             try {
                 t.join();
             } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                t.getConnection().close();
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }

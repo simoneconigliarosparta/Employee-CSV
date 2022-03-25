@@ -15,9 +15,9 @@ import java.util.List;
 public class Loader {
     public static void start() {
 
-        List<EmployeeDTO> fullList = FileReader.readFile(FilePath.EMPLOYEE_RECORD);
+        List<EmployeeDTO> fullList = FileReader.readFile(FilePath.EMPLOYEE_RECORD_LARGE);
         List<EmployeeDTO> filteredList = EmployeeFilter.removeDuplicates(fullList);
-        List<DatabaseThread> runningThreads = ThreadManager.setThread(100, filteredList);
+        List<DatabaseThread> runningThreads = ThreadManager.setThread(150, filteredList);
         DisplayManager.printResult(runningThreads);
     }
 }

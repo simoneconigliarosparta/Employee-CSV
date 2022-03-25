@@ -28,7 +28,7 @@ public class ThreadManager {
             connections.add(ConnectionManager.getConnection());
             employeesDAOS.add(new EmployeesDAO(connections.get(i)));
             List<EmployeeDTO> list = employees.subList(i * employees.size() / numThreads, (1 + i) * employees.size() / numThreads);
-            threads.add(new DatabaseThread(list, employeesDAOS.get(i)));
+            threads.add(new DatabaseThread(list, employeesDAOS.get(i), connections.get(i)));
         }
         return threads;
     }
