@@ -12,7 +12,9 @@ git clone https://github.com/simoneconigliarosparta/Employee-CSV.git
 <img src="https://github.com/simoneconigliarosparta/Employee-CSV/blob/main/employee_table.jpg">
 
 ## Before running the program:
-1. Add url, username and password of your MySQL database in the myJdbc.properties file.
+1. Create a myJdbc.properties file in the resource folder with these keys:  
+`url=` `username=` `password=`  
+take their values from your MySQL database and add them to the properties file.
 2. Make sure you don't have any record in the employees table:  
 `DELETE FROM employees WHERE emp_id > 0;`
 
