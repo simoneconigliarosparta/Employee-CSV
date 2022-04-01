@@ -20,6 +20,9 @@ hs_err_pid*
 *.swp
 *.md~
 
+# Properties file
+*.properties
+
 # Maven Files
 target/
 pom.xml.tag
