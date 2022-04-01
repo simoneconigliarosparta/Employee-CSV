@@ -21,7 +21,7 @@ hs_err_pid*
 *.md~
 
 # Properties file
-*.properties
+resources/*.properties
 
 # Maven Files
 target/
